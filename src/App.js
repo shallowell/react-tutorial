@@ -13,6 +13,35 @@ function Header() {
   );
 }
 
+function Form(props) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    const { query } = event.target.elements;
+    props.onFormSubmit(query.value);
+  }
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div className="field has-addons">
+          <div className="control is-expand">
+            <select name="query" defaultValue="coffee+beans">
+              <option value="coffee+beans">Coffee Beans</option>
+              <option value="coffee+cup">Coffee Cup</option>
+              <option value="java">Java</option>
+            </select>
+          </div>
+          <div className="control">
+            <button type="submit" className="button is-dark">
+              Reload
+            </button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  )
+}
+
 function Image(props) {
   return (
     <div className="card">
@@ -56,8 +85,19 @@ function Main() {
     });
   }, []);
 
+  function reloadImages(query) {
+    fetchImages(query).then((urls) => {
+      setUrls(urls);
+    });
+  }
+
     return (
       <main>
+        <section className="section">
+          <div className="container">
+            <Form onFormSubmit={reloadImages} />
+          </div>
+        </section>
         <section className="section">
           <div className="container">
             <Gallery urls={urls}/>
