@@ -30,12 +30,12 @@ function Form(props) {
               <option value="java">Java</option>
             </select>
           </div>
-          <div className="control">
+        </div>
+        <div className="control">
             <button type="submit" className="button is-dark">
-              Reload
+              Reload Picture
             </button>
           </div>
-        </div>
       </form>
 
     </div>
