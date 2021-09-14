@@ -1,4 +1,4 @@
-export async function fetchImages(query) {
+export async function fetchImages(query: string) {
     const response = await fetch (
         `https://pixabay.com/api/?key=23251795-ed73b570d3112136617308b8f&q=${query}`
     );
