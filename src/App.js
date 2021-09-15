@@ -1,15 +1,35 @@
 import { useEffect, useState } from "react";
 import { fetchImages } from "./api";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import './App.css';
+
 
 function Header() {
   return (
     <header className="hero is-dark is-bold">
-      <div className="hero-body">
-        <div className="container">
-          <h1 className="title"> Coffee Beans Map</h1>
-        </div>  
-      </div>
+      <Router>
+        <div>
+          <div className="hero-body">
+                <div className="container">
+                  <h1 className="title"> Coffee Beans Map</h1>
+                </div>  
+              </div>
+          <nav>
+                <Link className="topLink" to='/'>Home</Link>
+                <Link className="topLink" to="/about">About</Link>
+          </nav>
+        </div>
+      </Router>
     </header>
+  );
+}
+
+function About() {
+  return (
+    <div className="is-vcenterd ">
+      <h2>About</h2>
+      <p>You can find the one you need.</p>
+    </div>
   );
 }
 
@@ -92,6 +112,7 @@ function Main() {
   }
 
     return (
+      
       <main>
         <section className="section">
           <div className="container">
@@ -121,7 +142,16 @@ function App() {
   return (
     <div>
       <Header />
-      <Main />
+      <Router>
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/">
+            <Main />
+          </Route>
+        </Switch>
+      </Router>
       <Footer />
     </div>
   )
