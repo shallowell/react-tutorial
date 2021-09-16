@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import { fetchImages } from "./api";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as HashRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import './App.css';
 
 
 function Header() {
   return (
     <header className="hero is-dark is-bold">
-      <Router>
+      <HashRouter>
         <div>
           <div className="hero-body">
-                <div className="container">
-                  <h1 className="title"> Coffee Beans Map</h1>
-                </div>  
-              </div>
+            <div className="container">
+              <h1 className="title"> Coffee Beans Map</h1>
+            </div>  
+          </div>
           <nav>
                 <Link className="topLink" to='/'>Home</Link>
                 <Link className="topLink" to="/about">About</Link>
           </nav>
         </div>
-      </Router>
+      </HashRouter>
     </header>
   );
 }
@@ -142,16 +142,12 @@ function App() {
   return (
     <div>
       <Header />
-      <Router>
+      <HashRouter>
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/">
-            <Main />
-          </Route>
+          <Route exact path="/about" component={About} />
+          <Route exact path="/" component={Main} />
         </Switch>
-      </Router>
+      </HashRouter>
       <Footer />
     </div>
   )
